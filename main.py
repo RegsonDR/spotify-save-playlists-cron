@@ -41,7 +41,6 @@ def add_to_playlist(access_token, tracklist):
     payload = {
         "uris" : tracklist
     }
-    print(payload)
     headers = {
        "Content-Type": "application/json",
        "Authorization": "Bearer %s" % access_token
