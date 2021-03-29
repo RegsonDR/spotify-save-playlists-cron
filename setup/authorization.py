@@ -36,13 +36,17 @@ def get_refresh_token(code):
     return response.json()['refresh_token']
 
 def authorization():
-    auth_url = get_auth_url()
-    print("Open this link in your browser: %s" % auth_url )
+    if CLIENT_ID is None or CLIENT_SECRET is None or REDIRECT_URI is None:
+        print("Environment variables have not been loaded!")
+        return
 
-    user_url = input("Enter URL you was redirected to (after authorization): ")
-    parsed = urllib.parse.urlparse(user_url)
-    code = parse_qs(parsed.query)['code'][0]
+    print("Open this link in your browser: %s \n" % get_auth_url() )
+
+    redirected_url = input("Enter URL you was redirected to (after accepting authorization): ")
+    parsed_url = urllib.parse.urlparse(redirected_url)
+    code = parse_qs(parsed_url.query)['code'][0]
+
     refresh_token = get_refresh_token(code)
-    print("Your refresh token is: %s" % refresh_token)
+    print("\n Your refresh token is: %s" % refresh_token)
 
 authorization()

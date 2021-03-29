@@ -18,7 +18,7 @@ def refresh_access_token():
         "grant_type": "refresh_token",
         "client_id": CLIENT_ID,
     }
-    encoded_client = base64.b64encode((CLIENT_ID + ":" + CLIENT_SECRET).encode('ascii'))    
+    encoded_client = base64.b64encode((CLIENT_ID + ":" + CLIENT_SECRET).encode('ascii'))
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": "Basic %s" % encoded_client.decode('ascii')
