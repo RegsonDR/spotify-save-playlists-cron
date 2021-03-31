@@ -5,24 +5,22 @@ This script automatically saves your "Discover Weekly" playlist which is generat
 ## Initial Set Up (approx: 10 minutes)
 You should not need to make any commits back to the repo. The files in [/setup](/setup) will help obtain the authorization information for setting up the environment variables in github secrets in order to allow `main.py` to execute properly. You need to fork this repo in order to have your own instance of github actions.
 
-### (1) Libairies
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all of the required libairies. You could use a virtual env instead. 
-
+### (1) Create a Fork
+Start off with simple fork by clicking on the "Fork" button. Once you've done that, you can use your favorite git client to clone your repo or use the command line:
 ```bash
-$ pip install -r requirements.txt
-```
-
-### (2) Create a Fork
-Start off with simple fork by clicking on the "Fork" button. Once you've done that, you can use your favorite git client to clone your repo or use command line:
-```shell
 # Clone your fork to your local machine
 $ git clone https://github.com/<your-username>/spotify-save-discover-weekly.git
 ```
 
+### (2) Librairies
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all of the required librairies. You could use this with a [virtual environment](https://docs.python.org/3/library/venv.html) if required. 
+```bash
+$ pip install -r requirements.txt
+```
+
 ### (3) Spotify API Credentials
 1. Open the `.sample.env` file from the [/setup](/setup) folder on your local machine. 
-2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application. You can use any url for the redirect url.
+2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application. You can use any uri for the redirect uri, this is the base uri you will be redirected to after authorizing the app to access your account.
 3. Fill out the env file with the same Client ID, Secret and Redirect URI details used in step 2 and save this file as `.env`. **Do not post these details anywhere publically.**
 
 Example:
@@ -33,7 +31,7 @@ REDIRECT_URI=https://your.url/here
 ```
 5. Execute [authorization.py](/setup/authorization.py) and open the URL generated. 
 6. Authorize your app to access your Spotify account, this will then redirect you to your Redirect URI with a `?code=` parameter in the url.
-7. Copy the whole url into the console and hit enter, this will then give you your refresh token. **Do not post this refresh token anywhere publically.**
+7. Copy the whole url you were redirected to into the console and hit enter, this will then give you your refresh token. **Do not post this refresh token anywhere publically.**
 
 Example:
  ```
