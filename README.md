@@ -33,7 +33,7 @@ $python authorization.py
 Open this link in your browser: https://accounts.spotify.com/authorize?client_id=thisisanid&response_type=code&redirect_uri=https%3A%2F%2Fgithub.com%2FRegsonDR&scope=user-library-read+playlist-modify-public+playlist-modify-private+playlist-read-private+playlist-read-collaborative
 
 Enter URL you was redirected to (after accepting authorization):
-> https://github.com/RegsonDR?code=somecodehere
+> https://your.url/here?code=somecodehere
 
 Your refresh token is: somerefreshtokenhere
 ```
