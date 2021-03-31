@@ -4,9 +4,9 @@ This script automatically saves your "Discover Weekly" playlist which is generat
 
 ## Initial Set Up
 ### Spotify API Credentials
-1. Fork this repo and open the `.sample.env` file from the [/setup](/setup) folder. 
+1. Fork this repo and open the `.sample.env` file from the [/setup](/setup) folder on your local machine. 
 2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application.
-3. Fill out the env file with the Client ID, Secret and Redirect URI details and save this file as `.env`. Do not post these details anywhere publically.
+3. Fill out the env file with the Client ID, Secret and Redirect URI details and save this file as `.env`. **Do not post these details anywhere publically.**
 
 Example:
 ```
@@ -16,7 +16,7 @@ REDIRECT_URI=https://github.com/RegsonDR
 ```
 5. Execute [authorization.py](/setup/authorization.py) and open the URL generated (you may need to do a `pip install -r requirements` if you have any package errors). 
 6. Authorize your app to access your Spotify account, this will then redirect you to a new url with a `?code=` parameter in the url.
-7. Copy the whole url into the console and hit enter, this will then give you your refresh token. Do not post this refresh token anywhere publically.
+7. Copy the whole url into the console and hit enter, this will then give you your refresh token. **Do not post this refresh token anywhere publically.**
 
 Example:
  ```
