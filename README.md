@@ -56,7 +56,7 @@ Your refresh token is: somerefreshtokenhere
 
 Repeat these steps to get the Discover Weekly playlist's ID.
 
-## Manually Execution
+## Manual Execution
 1. Go to Actions in your forked repo.
 2. Click on "Save songs"
 3. Click on "Run workflow" which will bring up a drop down menu.
