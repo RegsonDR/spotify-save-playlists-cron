@@ -5,11 +5,11 @@ import json
 import os
 
 load_dotenv(find_dotenv())
-REFRESH_TOKEN = os.environ.get("REFRESH_TOKEN")
-CLIENT_ID = os.environ.get("CLIENT_ID")
-CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
-DISCOVER_WEEKLY_ID = os.environ.get("DISCOVER_WEEKLY_ID")
-SAVE_TO_ID = os.environ.get("SAVE_TO_ID")
+REFRESH_TOKEN = os.environ.get("REFRESH_TOKEN").strip()
+CLIENT_ID = os.environ.get("CLIENT_ID").strip()
+CLIENT_SECRET = os.environ.get("CLIENT_SECRET").strip()
+DISCOVER_WEEKLY_ID = os.environ.get("DISCOVER_WEEKLY_ID").strip()
+SAVE_TO_ID = os.environ.get("SAVE_TO_ID").strip()
 
 OAUTH_TOKEN_URL = "https://accounts.spotify.com/api/token"
 def refresh_access_token():
@@ -50,6 +50,10 @@ def add_to_playlist(access_token, tracklist):
 
 
 def main():
+    if REFRESH_TOKEN is None or CLIENT_ID is None or CLIENT_SECRET is None or DISCOVER_WEEKLY_ID is None or SAVE_TO_ID is None:
+        print("Environment variables have not been loaded!")
+        return
+
     access_token = refresh_access_token()['access_token']
     tracks =  get_playlist(access_token)['tracks']['items']
     tracklist = []
