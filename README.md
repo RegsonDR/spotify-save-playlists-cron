@@ -15,7 +15,7 @@ $ git clone https://github.com/<your-username>/spotify-save-discover-weekly.git
 ### (2) Spotify API Credentials
 1. Open the `.sample.env` file from the [/setup](/setup) folder on your local machine. 
 2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application.
-3. Fill out the env file with the Client ID, Secret and Redirect URI details and save this file as `.env`. **Do not post these details anywhere publically.**
+3. Fill out the env file with the same Client ID, Secret and Redirect URI details used in step 2 and save this file as `.env`. **Do not post these details anywhere publically.**
 
 Example:
 ```
