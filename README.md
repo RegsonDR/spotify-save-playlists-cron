@@ -5,8 +5,15 @@ This script automatically saves your "Discover Weekly" playlist which is generat
 ## Initial Set Up (approx: 10 minutes)
 You should not need to make any commits back to the repo. The files in [/setup](/setup) will help obtain the authorization information for setting up the environment variables in github secrets in order to allow `main.py` to execute properly. You need to fork this repo in order to have your own instance of github actions.
 
-### Spotify API Credentials
-1. Fork this repo and open the `.sample.env` file from the [/setup](/setup) folder on your local machine. 
+### (1) Create a Fork
+Start off with simple fork by clicking on the "Fork" button. Once you've done that, you can use your favorite git client to clone your repo or use command line:
+```shell
+# Clone your fork to your local machine
+$ git clone https://github.com/<your-username>/spotify-save-discover-weekly.git
+```
+
+### (2) Spotify API Credentials
+1. Open the `.sample.env` file from the [/setup](/setup) folder on your local machine. 
 2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application.
 3. Fill out the env file with the Client ID, Secret and Redirect URI details and save this file as `.env`. **Do not post these details anywhere publically.**
 
@@ -14,10 +21,10 @@ Example:
 ```
 CLIENT_ID=thisisanid
 CLIENT_SECRET=thisisasecret
-REDIRECT_URI=https://github.com/RegsonDR
+REDIRECT_URI=https://your.url/here
 ```
 5. Execute [authorization.py](/setup/authorization.py) and open the URL generated (you may need to do a `pip install -r requirements` if you have any package errors). 
-6. Authorize your app to access your Spotify account, this will then redirect you to a new url with a `?code=` parameter in the url.
+6. Authorize your app to access your Spotify account, this will then redirect you to your Redirect URI with a `?code=` parameter in the url.
 7. Copy the whole url into the console and hit enter, this will then give you your refresh token. **Do not post this refresh token anywhere publically.**
 
 Example:
@@ -31,7 +38,7 @@ Enter URL you was redirected to (after accepting authorization):
 Your refresh token is: somerefreshtokenhere
 ```
 
-### Github Actions
+### (3) Github Actions
 1. Go to the settings of your forked repo and click on secrets. 
 2. You will need to create the following secrets:
   *  **CLIENT_ID** - Use the same Client ID from your `.env`.
@@ -42,7 +49,7 @@ Your refresh token is: somerefreshtokenhere
 
 ![image](https://user-images.githubusercontent.com/32569720/113211160-0a7d3380-926d-11eb-97bc-0e17ef911336.png)
 
-### Obtaining Spotify Playlist IDs
+#### Obtaining Spotify Playlist IDs
 1. After logging into Spotify, create a new playlist (or use an old playlist) where you would like the songs to be permanently stored.
 2. Right click on this playlist > "Share" > Copy the Spotify URI (`spotify:playlist:c11M5VLWLMh66yW4gsl51S`). 
 3. The ID is `c11M5VLWLMh66yW4gsl51S`.
