@@ -43,7 +43,7 @@ Your refresh token is: somerefreshtokenhere
 ### Obtaining Spotify Playlist IDs
 1. After logging into Spotify, create a new playlist (or use an old playlist) where you would like the songs to be permanently stored.
 2. Right click on this playlist > "Share" > Copy the Spotify URI (`spotify:playlist:c11M5VLWLMh66yW4gsl51S`). 
-3. The ID is `c11M5VLWLMh66yW4gsl51S`, store this temporarily.
+3. The ID is `c11M5VLWLMh66yW4gsl51S`.
 
 Repeat these steps to get the Discover Weekly playlist's ID.
 
