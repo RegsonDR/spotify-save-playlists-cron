@@ -44,7 +44,7 @@ Enter URL you was redirected to (after accepting authorization):
 Your refresh token is: somerefreshtokenhere
 ```
 
-### (3) Github Actions
+### (4) Github Actions
 1. Go to the settings of your forked repo and click on secrets. 
 2. You will need to create the following secrets:
   *  **CLIENT_ID** - Use the same Client ID from your `.env`.
