@@ -49,20 +49,21 @@ Your refresh token is: somerefreshtokenhere
 2. You will need to create the following secrets:
   *  **CLIENT_ID** - Use the same Client ID from your `.env`.
   *  **CLIENT_SECRET** - Use the same Client Secret from your `.env`
-  *  **REFRESH_TOKEN** - Use the refresh token generated in the [Spotify API Credentials](#spotify-api-credentials) instructions above.
+  *  **REFRESH_TOKEN** - Use the refresh token generated in the [(3) Spotify API Credentials](#3-spotify-api-credentials) instructions above.
   *  **DISCOVER_WEEKLY_ID** - This is the ID of your Discover Weekly playlist, which can obtained using the [method](#obtaining-spotify-playlist-ids) described below.
-  *  **SAVE_TO_ID** - This is the ID of your permanent playlist, which can be obtained using the [method](#obtaining-spotify-playlist-ids) described below.
+  *  **SAVE_TO_ID** - This is the ID of your permanent playlist, which can be obtained using the [method](#obtaining-spotify-playlist-ids) described below. You will need to create a new playlist or use an existing playlist if there is somewhere you would like to already save the songs into.
 
 ![image](https://user-images.githubusercontent.com/32569720/113211160-0a7d3380-926d-11eb-97bc-0e17ef911336.png)
 
+---
+
 #### Obtaining Spotify Playlist IDs
-1. After logging into Spotify, create a new playlist (or use an old playlist) where you would like the songs to be permanently stored.
-2. Right click on this playlist > "Share" > Copy the Spotify URI (`spotify:playlist:c11M5VLWLMh66yW4gsl51S`). 
-3. The ID is `c11M5VLWLMh66yW4gsl51S`.
+1. Right click on a playlist > "Share" > Copy the Spotify URI (`spotify:playlist:c11M5VLWLMh66yW4gsl51S`). 
+2. The ID is of this playlist is `c11M5VLWLMh66yW4gsl51S`, use this for the environment variable.
 
-Repeat these steps to get the Discover Weekly playlist's ID.
+---
 
-## Manual Execution
+## Manual Execution via Github Actions
 1. Go to Actions in your forked repo.
 2. Click on "Save songs"
 3. Click on "Run workflow" which will bring up a drop down menu.
@@ -72,7 +73,13 @@ Any execution errors can be found from within the actions tab of your forked rep
 
 ![image](https://user-images.githubusercontent.com/32569720/113211386-4fa16580-926d-11eb-94c9-ddb513a122a7.png)
 
-Alternatively, you can store the **REFRESH_TOKEN**, **DISCOVER_WEEKLY_ID** & **SAVE_TO_ID** back into your `.env` file and execute `main.py` on your machine when required. **Do not post these environment details anywhere publically.**
+## Local Execution 
+Alternatively, you can store the **REFRESH_TOKEN**, **DISCOVER_WEEKLY_ID** & **SAVE_TO_ID** back into your `.env` file and execute `main.py` on your machine when required, maybe manually or using a task schedular. 
+
+ ```
+$python main.py
+```
+---
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
