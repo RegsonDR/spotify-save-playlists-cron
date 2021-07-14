@@ -74,7 +74,7 @@ Any execution errors can be found from within the actions tab of your forked rep
 ![image](https://user-images.githubusercontent.com/32569720/113211386-4fa16580-926d-11eb-94c9-ddb513a122a7.png)
 
 ## Local Execution 
-Alternatively, you can store the **REFRESH_TOKEN**, **DISCOVER_WEEKLY_ID** & **SAVE_TO_ID** back into your `.env` file and execute `main.py` on your machine when required, maybe manually or using a task schedular. 
+Alternatively, you can store the **REFRESH_TOKEN**, **DISCOVER_WEEKLY_ID** & **SAVE_TO_ID** back into your `.env` file and execute `main.py` on your machine when required, maybe manually or using a task schedular. Make sure to have the `.env` and `main.py` files in the same directory for this.
 
  ```
 $python main.py
