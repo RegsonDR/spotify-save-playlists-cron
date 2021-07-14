@@ -20,7 +20,7 @@ $ pip install -r requirements.txt
 
 ### (3) Spotify API Credentials
 1. Open the `.sample.env` file from the [/setup](/setup) folder on your local machine. 
-2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application. You can use any uri for the redirect uri, this is the base uri you will be redirected to after authorizing the app to access your account.
+2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application. You can use any uri for the redirect uri, this is the base uri you will be redirected to after authorizing the app to access your account. If you see a "INVALID_CLIENT: Invalid redirect URI", then edit settings of your app from the spotify dashboard and add your uri as a redirect uri.
 3. Fill out the env file with the same Client ID, Secret and Redirect URI details used in step 2 and save this file as `.env`. **Do not post these details anywhere publically.**
 
 Example:
