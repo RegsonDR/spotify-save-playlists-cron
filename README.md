@@ -20,7 +20,7 @@ $ pip install -r requirements.txt
 
 ### (3) Spotify API Credentials
 1. Open the `.sample.env` file from the [/setup](/setup) folder on your local machine. 
-2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application. You can use any uri for the redirect uri, this is the base uri you will be redirected to after authorizing the app to access your account.
+2. Sign into your [Spotify API Dashboard](https://developer.spotify.com/dashboard/applications) and create a new application. You can use any uri for the redirect uri, this is the base uri you will be redirected to after authorizing the app to access your account. If you see a "INVALID_CLIENT: Invalid redirect URI", then edit settings of your app from the spotify dashboard and add your uri as a redirect uri.
 3. Fill out the env file with the same Client ID, Secret and Redirect URI details used in step 2 and save this file as `.env`. **Do not post these details anywhere publically.**
 
 Example:
@@ -74,7 +74,7 @@ Any execution errors can be found from within the actions tab of your forked rep
 ![image](https://user-images.githubusercontent.com/32569720/113211386-4fa16580-926d-11eb-94c9-ddb513a122a7.png)
 
 ## Local Execution 
-Alternatively, you can store the **REFRESH_TOKEN**, **DISCOVER_WEEKLY_ID** & **SAVE_TO_ID** back into your `.env` file and execute `main.py` on your machine when required, maybe manually or using a task schedular. 
+Alternatively, you can store the **REFRESH_TOKEN**, **DISCOVER_WEEKLY_ID** & **SAVE_TO_ID** back into your `.env` file and execute `main.py` on your machine when required, maybe manually or using a task schedular. Make sure to have the `.env` and `main.py` files in the same directory for this.
 
  ```
 $python main.py
