@@ -112,7 +112,7 @@ def process_multiple_playlists(config):
 
 def main():
 
-    print("Day index is", get_weekday())
+    print("Day index is", get_weekday(), "for", get_timestamp())
 
     handled_playlist_count = 0
 
