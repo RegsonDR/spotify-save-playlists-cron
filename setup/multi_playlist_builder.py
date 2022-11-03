@@ -7,12 +7,12 @@ The array contains dictionaries with a
 source: The id of the playlist to copy
 target: The id of the playlist to copy the songs to
 day:    (optional) If you only want to add to a playlist on a particular weekday.
-        This makes sense for most weekly playlists. Sunday is 0, Monday is 1 etc.
+        This makes sense for most weekly playlists. Monday is 0, Friday is 4 etc.
 
 Fill in the data in the playlists_config and run the file to gather the processed JSON.
 
 After generating the JSON, copy it to the MULTIPLE_PLAYLIST_CONFIG= section. You don't need to put extra quotes,
-but you need to include the square brackets so it looks like:
+but you need to include the square brackets so for a playlist saved every Wednesday it looks like:
 
 MULTIPLE_PLAYLIST_CONFIG=[{"day": 2, .....]
 
@@ -25,14 +25,14 @@ playlists_config = [
 
     # Discover Weekly example
     {
-    "day": 1, # will only run on Mondays
+    "day": 0, # will only run on Mondays
     "source": "",
     "target": ""
     },
 
     # Release Radar example
     {
-    "day": 5, # will only run on Fridays
+    "day": 4, # will only run on Fridays
     "source": "",
     "target": ""
     }

@@ -56,14 +56,15 @@ def add_to_playlist(access_token, tracklist, playlistID):
 
 def handle_playlist(source, target):
     access_token = refresh_access_token()['access_token']
-    tracks =  get_playlist(access_token, source)['tracks']['items']
+    playlist = get_playlist(access_token, source)
+    tracks = playlist['tracks']['items']
     tracklist = []
     for item in tracks:
         tracklist.append(item['track']['uri'])
     response = add_to_playlist(access_token, tracklist, target)
 
     if "snapshot_id" in response:
-        print("Successfully added all songs from", source)
+        print("Successfully added all songs from", playlist['name'])
         return True
     else:
         print(response)
@@ -96,7 +97,7 @@ def process_multiple_playlists(config):
 
                 if(day != get_weekday()): 
                     #if a weekday is set, don't add them on other weekdays
-                    break
+                    continue
 
             if(source and target):
                 if handle_playlist(source, target):
