@@ -112,6 +112,8 @@ def process_multiple_playlists(config):
 
 def main():
 
+    print("Day index is", get_weekday())
+
     handled_playlist_count = 0
 
     if REFRESH_TOKEN is None or CLIENT_ID is None or CLIENT_SECRET is None:
