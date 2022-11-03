@@ -28,3 +28,4 @@ jobs:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
           DISCOVER_WEEKLY_ID: ${{ secrets.DISCOVER_WEEKLY_ID }}
           SAVE_TO_ID: ${{ secrets.SAVE_TO_ID }}
+          MULTIPLE_PLAYLIST_CONFIG: ${{ secrets.MULTIPLE_PLAYLIST_CONFIG }}
