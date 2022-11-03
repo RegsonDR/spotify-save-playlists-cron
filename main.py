@@ -88,6 +88,8 @@ def process_multiple_playlists(config):
 
     for playlist_info in multi_playlist_info:
 
+        should_handle = True
+
         try:
             day = playlist_info.get('day')
             source = playlist_info.get('source')
@@ -97,13 +99,14 @@ def process_multiple_playlists(config):
 
                 if(day != get_weekday()): 
                     #if a weekday is set, don't add them on other weekdays
-                    continue
+                    should_handle = False
 
-            if(source and target):
-                if handle_playlist(source, target):
-                    handled_playlist_count += 1
-            else:
-                raise ValueError('Source or Target not defined')
+            if should_handle:
+                if source and target:
+                    if handle_playlist(source, target):
+                        handled_playlist_count += 1
+                else:
+                    raise ValueError('Source or Target not defined')
 
         except Exception as e: 
             print("Error:", e, "in", playlist_info)
