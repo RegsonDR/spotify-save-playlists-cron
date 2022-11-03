@@ -93,7 +93,7 @@ def process_multiple_playlists(config):
             source = playlist_info.get('source')
             target = playlist_info.get('target')
 
-            if not DEBUG_WEEKDAYS and day and isinstance(day, int):
+            if not DEBUG_WEEKDAYS and day != None and isinstance(day, int):
 
                 if(day != get_weekday()): 
                     #if a weekday is set, don't add them on other weekdays
