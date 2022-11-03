@@ -71,7 +71,7 @@ def handle_playlist(source, target):
         return False
 
 def process_discover_weekly_playlist():
-    if DEBUG_WEEKDAYS or get_weekday() == 1: #only run on Monday
+    if DEBUG_WEEKDAYS or get_weekday() == 0: #only run on Monday
         if handle_playlist(DISCOVER_WEEKLY_ID, SAVE_TO_ID):
             return 1
     return 0
