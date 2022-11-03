@@ -16,7 +16,7 @@ MULTIPLE_PLAYLIST_CONFIG = get_env("MULTIPLE_PLAYLIST_CONFIG")
 
 OAUTH_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-DEBUG_WEEKDAYS = True # skips weekday recognition for easier testing
+DEBUG_WEEKDAYS = False # skips weekday recognition for easier testing
 
 def refresh_access_token():
     payload = {
