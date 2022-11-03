@@ -2,7 +2,7 @@ name: Save songs
 
 on:
   schedule:
-  - cron: '30 6 * * 1'
+  - cron: '30 6 * * *'
   workflow_dispatch:
 
 jobs:
