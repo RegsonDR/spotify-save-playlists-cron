@@ -2,7 +2,7 @@ name: Save songs
 
 on:
   schedule:
-  - cron: '30 6 * * 1'
+  - cron: '30 6 * * *'
   workflow_dispatch:
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       - name: Setup Python Environment
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: '3.10'
 
       - name: Install Requirements
         run: pip install -r requirements.txt
@@ -28,3 +28,4 @@ jobs:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
           DISCOVER_WEEKLY_ID: ${{ secrets.DISCOVER_WEEKLY_ID }}
           SAVE_TO_ID: ${{ secrets.SAVE_TO_ID }}
+          MULTIPLE_PLAYLIST_CONFIG: ${{ secrets.MULTIPLE_PLAYLIST_CONFIG }}
