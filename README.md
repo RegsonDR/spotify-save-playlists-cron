@@ -61,7 +61,7 @@ Your refresh token is: somerefreshtokenhere
   *  **day** (optional) - Index day of the week you want the playlist copied, e.g 0 for Monday, 4 for Friday. Leave this key out if you want daily execution.
   *  **source** (required) - The temporary spotify playlist ID you want to copy.
   *  **target** (required) - The permanent spotify playlist ID you want to copy to.
-3. After you're done populating the dictionary, execute the [playlist_config_builder.py](/setup/playlist_config_builder.py) script and it will give you a stringified version of your configuration.
+3. After you're done populating the dictionary, execute the [playlist_config_builder.py](/setup/playlist_config_builder.py) script and it will give you a stringified json of your configuration.
 
 Example:
  ```
@@ -75,7 +75,7 @@ $python multi_playlist_builder.py
   *  **CLIENT_ID** - Use the same Client ID from your `.env`.
   *  **CLIENT_SECRET** - Use the same Client Secret from your `.env`
   *  **REFRESH_TOKEN** - Use the refresh token generated in the [(3.7) Spotify API Credentials](#3-spotify-api-credentials) instructions above.
-  *  **PLAYLISTS_CONFIG** - Use the stringified configuration created in [(4.3) Playlist Configuration](#4-playlist-configuration) instructions above.
+  *  **PLAYLISTS_CONFIG** - Use the stringified json created in [(4.3) Playlist Configuration](#4-playlist-configuration) instructions above.
 
 ![image](https://user-images.githubusercontent.com/32569720/200585494-7125568c-fe49-40a6-849b-13f092a01451.png)
 ---
