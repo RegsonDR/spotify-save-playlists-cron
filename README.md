@@ -1,6 +1,6 @@
-# spotify-save-playlists-daily [![Save songs](https://github.com/RegsonDR/spotify-save-playlists-daily/actions/workflows/save.yaml/badge.svg)](https://github.com/RegsonDR/spotify-save-playlists-daily/actions/workflows/save.yaml)
+# spotify-save-playlists-cron [![Save songs](https://github.com/RegsonDR/spotify-save-playlists-cron/actions/workflows/save.yaml/badge.svg)](https://github.com/RegsonDR/spotify-save-playlists-cron/actions/workflows/save.yaml)
 
-This script automatically saves any of your playlists that have been generated & refreshed by Spotify, e.g "Discover Weekly". The songs from your temporary playlists are saved into a permanent playlist, using the Spotify API ([Authorization Code Flow](https://developer.spotify.com/documentation/general/guides/authorization/code-flow/)). The automation is powered by [Github Actions](https://docs.github.com/en/actions) and executes automatically everyday depending on your [playlist config](#4-playlist-configuration), playlists can be saved on a daily basis, or weekly based on certain specified days. Historically, this repository was created and used for automatically saving only the "Discover Weekly" playlist every week but it has now been extended to support multiple playlists on multiple days ([#3](https://github.com/RegsonDR/spotify-save-playlists-daily/pull/3)).
+This script automatically saves any of your playlists that have been generated & refreshed by Spotify, e.g "Discover Weekly". The songs from your temporary playlists are saved into a permanent playlist, using the Spotify API ([Authorization Code Flow](https://developer.spotify.com/documentation/general/guides/authorization/code-flow/)). The automation is powered by [Github Actions](https://docs.github.com/en/actions) and executes automatically everyday depending on your [playlist config](#4-playlist-configuration), playlists can be saved on a daily basis, or weekly based on certain specified days. Historically, this repository was created and used for automatically saving only the "Discover Weekly" playlist every week but it has now been extended to support multiple playlists on multiple days ([#3](https://github.com/RegsonDR/spotify-save-playlists-cron/pull/3)).
 
 ---
 
@@ -18,7 +18,7 @@ You need to fork this repo in order to have your own instance of github actions.
 Start off with simple fork by clicking on the "Fork" button. Once you've done that, you can use your favorite git client to clone your repo or use the command line:
 ```bash
 # Clone your fork to your local machine
-$ git clone https://github.com/<your-username>/spotify-save-playlists-daily.git
+$ git clone https://github.com/<your-username>/spotify-save-playlists-cron.git
 ```
 
 ### (2) Librairies
