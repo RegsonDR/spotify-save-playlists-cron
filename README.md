@@ -1,16 +1,16 @@
 # spotify-save-playlists-daily [![Save songs](https://github.com/RegsonDR/spotify-save-playlists-daily/actions/workflows/save.yaml/badge.svg)](https://github.com/RegsonDR/spotify-save-playlists-daily/actions/workflows/save.yaml)
 
-This script automatically saves any of your playlists that have been generated & refreshed by Spotify, e.g "Discover Weekly". The songs from your temporary playlists are saved into a permanent playlist, using the Spotify API ([Authorization Code Flow](https://developer.spotify.com/documentation/general/guides/authorization/code-flow/)). The automation is powered by [Github Actions](https://docs.github.com/en/actions) and executes automatically everyday depending on your [playlist config](#4-playlist-configuration). Historically, this repository was created and used for automatically saving only the "Discover Weekly" playlist but it has now been extended to support multiple playlists on multiple days (#3).
+This script automatically saves any of your playlists that have been generated & refreshed by Spotify, e.g "Discover Weekly". The songs from your temporary playlists are saved into a permanent playlist, using the Spotify API ([Authorization Code Flow](https://developer.spotify.com/documentation/general/guides/authorization/code-flow/)). The automation is powered by [Github Actions](https://docs.github.com/en/actions) and executes automatically everyday depending on your [playlist config](#4-playlist-configuration). Historically, this repository was created and used for automatically saving only the "Discover Weekly" playlist but it has now been extended to support multiple playlists on multiple days ([#3](https://github.com/RegsonDR/spotify-save-playlists-daily/pull/3)).
 
 ---
 
-### BREAKING CHANGE:
-This repository no longer uses `DISCOVER_WEEKLY_ID` or `SAVE_TO_ID` as environment variables, you will need to follow the set up from step 4 for it to continue working.
+### (!) BREAKING CHANGE
+This repository no longer uses `DISCOVER_WEEKLY_ID` or `SAVE_TO_ID` as environment variables, you will need to follow the set up from [step 4](#4-playlist-configuration) for it to continue working.
 
 ---
 
 ## Initial Set Up (approx: 10-15 minutes)
-You should not need to make any commits back to the repo. [authorization.py](/setup/authorization.py) will help obtain the authorization information for setting up the environment variables in github secrets in order to allow `main.py` to execute properly. [playlist_config_builder.py](/setup/playlist_config_builder.py) will help you create a JSON string for your playlist configuration.
+You should not need to make any commits back to the repo. [authorization.py](/setup/authorization.py) will help obtain the authorization data for setting up the environment variable in github secrets in order to allow `main.py` to execute properly. [playlist_config_builder.py](/setup/playlist_config_builder.py) will help you create a JSON string for your playlist configuration.
 
 You need to fork this repo in order to have your own instance of github actions.
 
@@ -58,14 +58,14 @@ Your refresh token is: somerefreshtokenhere
 
 1. Open [playlist_config_builder.py](/setup/playlist_config_builder.py) on your local machine.
 2. Populate the playlists_config dictionary variable with your configuration, one object for each playlist. 
-  *  **day** (optional)- The index day of the week you want the playlist copied, e.g 0 for Monday, 4 for Friday. Leave this key out if you want daily execution.
+  *  **day** (optional) - Index day of the week you want the playlist copied, e.g 0 for Monday, 4 for Friday. Leave this key out if you want daily execution.
   *  **source** (required) - The temporary spotify playlist ID you want to copy.
-  *  **target** (required )- The permanent spotify playlist ID you want to copy to.
+  *  **target** (required) - The permanent spotify playlist ID you want to copy to.
 3. After you're done populating the dictionary, execute the [playlist_config_builder.py](/setup/playlist_config_builder.py) script and it will give you a stringified version of your configuration.
 
 Example:
  ```
-$python multi_playlist_builder.py.py
+$python multi_playlist_builder.py
 [{"day": 0, "source": "58x813F8Nv8YZJrPDplmV7", "target": "009M5VLWL1h66yW4gsl51S"},{"day": 4, "source": "17x813F8Nv8YZJrPDplm12", "target": "18cK5VLWL15P6yE4gSl110"},{"source": "124814587v88YZJrPDpl", "target": "05VLWL1hyW4l51S"}]
 ```
 
@@ -77,9 +77,9 @@ $python multi_playlist_builder.py.py
   *  **REFRESH_TOKEN** - Use the refresh token generated in the [(3.7) Spotify API Credentials](#3-spotify-api-credentials) instructions above.
   *  **PLAYLISTS_CONFIG** - Use the stringified configuration created in [(4.3) Playlist Configuration](#4-playlist-configuration) instructions above.
 
-![image](https://user-images.githubusercontent.com/32569720/113211160-0a7d3380-926d-11eb-97bc-0e17ef911336.png)
-
+![image](https://user-images.githubusercontent.com/32569720/200585494-7125568c-fe49-40a6-849b-13f092a01451.png)
 ---
+
 
 ## Manual Execution via Github Actions
 1. Go to Actions in your forked repo.
