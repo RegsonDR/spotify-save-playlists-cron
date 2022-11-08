@@ -11,7 +11,7 @@ PLAYLISTS_CONFIG = get_env("PLAYLISTS_CONFIG")
 
 OAUTH_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-DEBUG_WEEKDAYS = True # skips weekday recognition for easier testing
+DEBUG_WEEKDAYS = False # skips weekday recognition for easier testing
 
 def refresh_access_token():
     payload = {
@@ -110,6 +110,9 @@ def main():
     if REFRESH_TOKEN == None or CLIENT_ID == None or CLIENT_SECRET == None:
         print("Auth token variables have not been loaded!")
         return
+
+    if DEBUG_WEEKDAYS == True:
+        print("Debug mode enabled")
 
     handled_playlist_count = process_multiple_playlists(PLAYLISTS_CONFIG)
     if handled_playlist_count == 0:
