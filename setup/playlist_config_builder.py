@@ -1,6 +1,6 @@
 '''
 
-This is a small helper to build your playlist array if you want to use the multiple playlists option.
+This is a small helper to build your playlist array.
 
 The array contains dictionaries with a
 
@@ -11,13 +11,12 @@ day:    (optional) If you only want to add to a playlist on a particular weekday
 
 Fill in the data in the playlists_config and run the file to gather the processed JSON.
 
-After generating the JSON, copy it to the MULTIPLE_PLAYLIST_CONFIG= section. You don't need to put extra quotes,
+After generating the JSON, copy it to the PLAYLISTS_CONFIG= section. You don't need to put extra quotes,
 but you need to include the square brackets so for a playlist saved every Wednesday it looks like:
 
-MULTIPLE_PLAYLIST_CONFIG=[{"day": 2, .....]
+PLAYLISTS_CONFIG=[{"day": 2, .....]
 
 '''
-
 
 import json
 
@@ -39,13 +38,7 @@ playlists_config = [
 
 ]
 
-
 playlists_json = json.dumps(playlists_config)
+
+# Copy this JSON String from your console into your .env file for the PLAYLISTS_CONFIG key.
 print(f'\n{playlists_json}\n')
-#JSON string to put in .env
-
-
-
-"""If you wnat to verify whether your string can be parsed back to a dict, uncomment the following"""
-# playlists_dict = json.loads(playlists_json)
-# print(playlists_dict)

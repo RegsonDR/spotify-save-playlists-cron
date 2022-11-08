@@ -1,22 +1,17 @@
-from dotenv import load_dotenv, find_dotenv
-import requests
-import base64
-import json
-
+import requests, base64, json
 from misc import *
+from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
 REFRESH_TOKEN = get_env("REFRESH_TOKEN")
 CLIENT_ID = get_env("CLIENT_ID")
 CLIENT_SECRET = get_env("CLIENT_SECRET")
-DISCOVER_WEEKLY_ID = get_env("DISCOVER_WEEKLY_ID")
-SAVE_TO_ID = get_env("SAVE_TO_ID")
-MULTIPLE_PLAYLIST_CONFIG = get_env("MULTIPLE_PLAYLIST_CONFIG")
+PLAYLISTS_CONFIG = get_env("PLAYLISTS_CONFIG")
 
 OAUTH_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-DEBUG_WEEKDAYS = False # skips weekday recognition for easier testing
+DEBUG_WEEKDAYS = True # skips weekday recognition for easier testing
 
 def refresh_access_token():
     payload = {
@@ -32,9 +27,8 @@ def refresh_access_token():
     response = requests.post(OAUTH_TOKEN_URL, data=payload, headers=headers)
     return response.json()
 
-
-def get_playlist(access_token, playlistID):
-    url = "https://api.spotify.com/v1/playlists/%s" % playlistID
+def get_playlist(access_token, playlist_id):
+    url = "https://api.spotify.com/v1/playlists/%s" % playlist_id
     headers = {
        "Content-Type": "application/json",
        "Authorization": "Bearer %s" % access_token
@@ -42,8 +36,8 @@ def get_playlist(access_token, playlistID):
     response = requests.get(url, headers=headers)
     return response.json()
 
-def add_to_playlist(access_token, tracklist, playlistID):
-    url = "https://api.spotify.com/v1/playlists/%s/tracks" % playlistID
+def add_to_playlist(access_token, tracklist, playlist_id):
+    url = "https://api.spotify.com/v1/playlists/%s/tracks" % playlist_id
     payload = {
         "uris" : tracklist
     }
@@ -54,30 +48,29 @@ def add_to_playlist(access_token, tracklist, playlistID):
     response = requests.post(url, data=json.dumps(payload), headers=headers)
     return response.json()
 
-def handle_playlist(source, target):
+def copy_playlist(source, target):
     access_token = refresh_access_token()['access_token']
     playlist = get_playlist(access_token, source)
-    tracks = playlist['tracks']['items']
+
+    try:
+        tracks = playlist['tracks']
+    except Exception as e: 
+        raise ValueError('No tracks found, check the source')
+
     tracklist = []
-    for item in tracks:
+    for item in tracks['items']:
         tracklist.append(item['track']['uri'])
     response = add_to_playlist(access_token, tracklist, target)
 
     if "snapshot_id" in response:
-        print("Successfully added all songs from", playlist['name'])
+        print("Successfully added all", len(tracklist),"songs from", playlist['name'])
         return True
     else:
         print(response)
         return False
 
-def process_discover_weekly_playlist():
-    if DEBUG_WEEKDAYS or get_weekday() == 0: #only run on Monday
-        if handle_playlist(DISCOVER_WEEKLY_ID, SAVE_TO_ID):
-            return 1
-    return 0
-
 def process_multiple_playlists(config):
-
+    current_week_day = get_weekday()
     handled_playlist_count = 0
 
     try:
@@ -87,56 +80,41 @@ def process_multiple_playlists(config):
         return handled_playlist_count
 
     for playlist_info in multi_playlist_info:
-
-        should_handle = True
-
+        should_handle = False
         try:
-            day = playlist_info.get('day')
+            required_week_day = playlist_info.get('day')
             source = playlist_info.get('source')
             target = playlist_info.get('target')
 
-            if not DEBUG_WEEKDAYS and day != None and isinstance(day, int):
+            if not source or not target:
+                raise ValueError('Source or Target not defined')
 
-                if(day != get_weekday()): 
-                    #if a weekday is set, don't add them on other weekdays
-                    should_handle = False
+            # If debugging or there isn't a day set
+            if DEBUG_WEEKDAYS or required_week_day == None:
+                should_handle = True
 
-            if should_handle:
-                if source and target:
-                    if handle_playlist(source, target):
-                        handled_playlist_count += 1
-                else:
-                    raise ValueError('Source or Target not defined')
+            # If there is a day set
+            if  isinstance(required_week_day, int) and required_week_day == current_week_day:
+                should_handle = True
 
+            if should_handle and copy_playlist(source, target):
+                handled_playlist_count += 1
+                    
         except Exception as e: 
             print("Error:", e, "in", playlist_info)
 
     return handled_playlist_count
 
-
 def main():
-
     print("Day index is", get_weekday(), "for", get_timestamp())
-
-    handled_playlist_count = 0
-
-    if REFRESH_TOKEN is None or CLIENT_ID is None or CLIENT_SECRET is None:
+    if REFRESH_TOKEN == None or CLIENT_ID == None or CLIENT_SECRET == None:
         print("Auth token variables have not been loaded!")
         return
 
-    # default functionaliy with a single "Discover Weekly" playlist
-    if DISCOVER_WEEKLY_ID and SAVE_TO_ID:
-        handled_playlist_count += process_discover_weekly_playlist()
-
-    # multiple playlists option, see `multi_playlist_builder.py`
-    if MULTIPLE_PLAYLIST_CONFIG:
-        handled_playlist_count += process_multiple_playlists(MULTIPLE_PLAYLIST_CONFIG)
-
-
+    handled_playlist_count = process_multiple_playlists(PLAYLISTS_CONFIG)
     if handled_playlist_count == 0:
-        print("No playlists handled. Have you set any playlist tokens in your .env?")
+        print("No playlists handled. Have you set any playlist tokens in your .env for today?")
     else:
         print("Handled", handled_playlist_count, "playlist(s)")
-
 
 main()

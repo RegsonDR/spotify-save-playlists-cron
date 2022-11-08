@@ -1,14 +1,23 @@
-import urllib.parse
-from urllib.parse import parse_qs
+'''
+
+This is a script to help you obtain your api refresh token which used when making api requests to spotify.
+
+Fill in the .env file with your CLIENT_ID, CLIENT_SECRET & REDIRECT_URI and execute this script.
+In the console it will output a link, click on it and authorize the oauth request, then copy the new
+redirected url back into the console. It will strip out everything to get your refresh token, copy
+this refresh token into your .env file for the REFRESH_TOKEN key.
+
+'''
+
+import urllib.parse, requests, base64, sys, os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from misc import *
 from dotenv import load_dotenv, find_dotenv
-import requests
-import base64
-import os
 
 load_dotenv(find_dotenv())
-CLIENT_ID = os.environ.get("CLIENT_ID")
-CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
-REDIRECT_URI = os.environ.get("REDIRECT_URI")
+CLIENT_ID = get_env("CLIENT_ID")
+CLIENT_SECRET = get_env("CLIENT_SECRET")
+REDIRECT_URI = get_env("REDIRECT_URI")
 
 OAUTH_AUTHORIZE_URL = "https://accounts.spotify.com/authorize"
 OAUTH_TOKEN_URL = "https://accounts.spotify.com/api/token"
@@ -36,7 +45,7 @@ def get_refresh_token(code):
     return response.json()['refresh_token']
 
 def authorization():
-    if CLIENT_ID is None or CLIENT_SECRET is None or REDIRECT_URI is None:
+    if CLIENT_ID == None or CLIENT_SECRET == None or REDIRECT_URI == None:
         print("Environment variables have not been loaded!")
         return
 
@@ -44,7 +53,7 @@ def authorization():
 
     redirected_url = input("Enter URL you was redirected to (after accepting authorization): ")
     parsed_url = urllib.parse.urlparse(redirected_url)
-    code = parse_qs(parsed_url.query)['code'][0]
+    code = urllib.parse.parse_qs(parsed_url.query)['code'][0]
 
     refresh_token = get_refresh_token(code)
     print("\n Your refresh token is: %s" % refresh_token)
