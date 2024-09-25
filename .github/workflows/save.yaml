@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code	
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Python Environment
         uses: actions/setup-python@v2
@@ -27,3 +27,6 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
           PLAYLISTS_CONFIG: ${{ secrets.PLAYLISTS_CONFIG }}
+
+      - name: Keepalive
+        uses: gautamkrishnar/keepalive-workflow@v1
